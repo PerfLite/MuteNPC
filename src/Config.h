@@ -22,6 +22,7 @@ namespace MuteNPC
         bool muteVoiceAudio{ true };
         bool blockLipSync{ false };
         bool blockSubtitles{ true };
+        std::string language{ "auto" };
         std::vector<MutedActorInfo> mutedList;
     };
 

@@ -120,6 +120,8 @@ namespace MuteNPC
             m_settings.muteVoiceAudio = (ExtractBool(content, "muteVoiceAudio", true) == "true");
             m_settings.blockLipSync = (ExtractBool(content, "blockLipSync", false) == "true");
             m_settings.blockSubtitles = (ExtractBool(content, "blockSubtitles", true) == "true");
+            m_settings.language = ExtractString(content, "language");
+            if (m_settings.language.empty()) m_settings.language = "auto";
 
             // Parse mutedList
             m_settings.mutedList.clear();
@@ -180,6 +182,7 @@ namespace MuteNPC
             file << "  \"muteVoiceAudio\": " << (m_settings.muteVoiceAudio ? "true" : "false") << ",\n";
             file << "  \"blockLipSync\": " << (m_settings.blockLipSync ? "true" : "false") << ",\n";
             file << "  \"blockSubtitles\": " << (m_settings.blockSubtitles ? "true" : "false") << ",\n";
+            file << "  \"language\": \"" << SanitizeName(m_settings.language) << "\",\n";
             file << "  \"mutedList\": [\n";
 
             for (size_t i = 0; i < m_settings.mutedList.size(); ++i) {

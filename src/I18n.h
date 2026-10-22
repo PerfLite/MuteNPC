@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <string_view>
+#include <filesystem>
 
 namespace MuteNPC
 {
@@ -15,6 +17,7 @@ namespace MuteNPC
         std::string target_btn_unmute{ "Unmute this target" };
         std::string params_section{ "Parameters:" };
         std::string params_hide_subtitles{ "Hide subtitles for muted dialogue" };
+        std::string params_language{ "Language / Язык:" };
         std::string list_header{ "Muted NPC List (%zu)" };
         std::string list_empty{ "List is empty. Aim at an NPC and click \"Mute this target\"." };
         std::string list_btn_delete{ "Remove" };
@@ -27,8 +30,9 @@ namespace MuteNPC
     public:
         static I18n& GetSingleton();
 
-        void Load();
+        void Load(std::string_view a_override = "");
         const I18nStrings& Strings() const { return m_strings; }
+        const std::string& GetCurrentSuffix() const { return m_currentSuffix; }
 
     private:
         I18n() = default;
@@ -37,8 +41,10 @@ namespace MuteNPC
         std::string DetectLanguageSuffix();
         void LoadFromFile(const std::filesystem::path& a_path);
         void SetRussianDefaults();
+        void SetEnglishDefaults();
 
         I18nStrings m_strings;
+        std::string m_currentSuffix{ "EN" };
     };
 
     inline const I18nStrings& Tr()

@@ -9,6 +9,7 @@
   "Target.BtnUnmute": "Вернуть голос этой цели",
   "Params.Section": "Параметры:",
   "Params.HideSubtitles": "Скрывать субтитры заглушенных фраз",
+  "Params.Language": "Язык меню:",
   "List.Header": "Список заглушенных NPC (%zu)",
   "List.Empty": "Список пуст. Наведите прицел на NPC и нажмите «Заглушить эту цель».",
   "List.BtnDelete": "Удалить",

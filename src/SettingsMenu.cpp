@@ -75,6 +75,34 @@ namespace MuteNPC
             changed = true;
         }
 
+        // Выбор языка (Слайдер / Выпадающий список)
+        int langIdx = 0;
+        if (cfg.language == "EN") langIdx = 1;
+        else if (cfg.language == "RU") langIdx = 2;
+        else langIdx = 0; // "auto"
+
+        if (SKSEMenuFramework::igCombo_Str) {
+            const char* items = "Auto (Skyrim / Игра)\0English (EN)\0Русский (RU)\0\0";
+            if (SKSEMenuFramework::igCombo_Str(tr.params_language.c_str(), &langIdx, items, -1)) {
+                if (langIdx == 1) cfg.language = "EN";
+                else if (langIdx == 2) cfg.language = "RU";
+                else cfg.language = "auto";
+
+                I18n::GetSingleton().Load(cfg.language);
+                changed = true;
+            }
+        } else if (SKSEMenuFramework::igSliderInt) {
+            const char* fmt = (langIdx == 1) ? "English (EN)" : ((langIdx == 2) ? "Русский (RU)" : "Auto (Игра)");
+            if (SKSEMenuFramework::igSliderInt(tr.params_language.c_str(), &langIdx, 0, 2, fmt, 0)) {
+                if (langIdx == 1) cfg.language = "EN";
+                else if (langIdx == 2) cfg.language = "RU";
+                else cfg.language = "auto";
+
+                I18n::GetSingleton().Load(cfg.language);
+                changed = true;
+            }
+        }
+
         SKSEMenuFramework::igSeparator();
 
         // 4. Список заглушенных NPC
@@ -122,7 +150,9 @@ namespace MuteNPC
             cfg.muteVoiceAudio = true;
             cfg.blockLipSync = false;
             cfg.blockSubtitles = true;
+            cfg.language = "auto";
             cfg.mutedList.clear();
+            I18n::GetSingleton().Load("auto");
             changed = true;
         }
 

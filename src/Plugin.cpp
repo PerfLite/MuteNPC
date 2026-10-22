@@ -36,7 +36,7 @@ namespace
 
                 try {
                     // Load translations
-                    MuteNPC::I18n::GetSingleton().Load();
+                    MuteNPC::I18n::GetSingleton().Load(MuteNPC::Config::GetSingleton().GetSettings().language);
 
                     // Install hooks
                     MuteNPC::InstallHooks();

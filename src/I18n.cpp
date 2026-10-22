@@ -94,6 +94,26 @@ namespace MuteNPC
         return upperLang.empty() ? "EN" : upperLang;
     }
 
+    void I18n::SetEnglishDefaults()
+    {
+        m_strings.menu_section = "MuteNPC/Settings";
+        m_strings.menu_header = "=== MuteNPC: Silence NPCs ===";
+        m_strings.menu_enable = "Enable mod";
+        m_strings.target_section = "Crosshair Target:";
+        m_strings.target_name = "  Target: %s";
+        m_strings.target_none = "  (aim at any NPC)";
+        m_strings.target_btn_mute = "Mute this target";
+        m_strings.target_btn_unmute = "Unmute this target";
+        m_strings.params_section = "Parameters:";
+        m_strings.params_hide_subtitles = "Hide subtitles for muted dialogue";
+        m_strings.params_language = "Language / Язык:";
+        m_strings.list_header = "Muted NPC List (%zu)";
+        m_strings.list_empty = "List is empty. Aim at an NPC and click \"Mute this target\".";
+        m_strings.list_btn_delete = "Remove";
+        m_strings.list_btn_clear = "Clear entire list";
+        m_strings.settings_btn_reset = "Reset settings to default";
+    }
+
     void I18n::SetRussianDefaults()
     {
         m_strings.menu_section = "MuteNPC/Настройки";
@@ -106,6 +126,7 @@ namespace MuteNPC
         m_strings.target_btn_unmute = "Вернуть голос этой цели";
         m_strings.params_section = "Параметры:";
         m_strings.params_hide_subtitles = "Скрывать субтитры заглушенных фраз";
+        m_strings.params_language = "Язык / Language:";
         m_strings.list_header = "Список заглушенных NPC (%zu)";
         m_strings.list_empty = "Список пуст. Наведите прицел на NPC и нажмите «Заглушить эту цель».";
         m_strings.list_btn_delete = "Удалить";
@@ -133,6 +154,7 @@ namespace MuteNPC
         m_strings.target_btn_unmute = ExtractJsonString(json, "Target.BtnUnmute", m_strings.target_btn_unmute);
         m_strings.params_section = ExtractJsonString(json, "Params.Section", m_strings.params_section);
         m_strings.params_hide_subtitles = ExtractJsonString(json, "Params.HideSubtitles", m_strings.params_hide_subtitles);
+        m_strings.params_language = ExtractJsonString(json, "Params.Language", m_strings.params_language);
         m_strings.list_header = ExtractJsonString(json, "List.Header", m_strings.list_header);
         m_strings.list_empty = ExtractJsonString(json, "List.Empty", m_strings.list_empty);
         m_strings.list_btn_delete = ExtractJsonString(json, "List.BtnDelete", m_strings.list_btn_delete);
@@ -142,13 +164,25 @@ namespace MuteNPC
         SKSE::log::info("MuteNPC: Loaded translation from {}", a_path.filename().string());
     }
 
-    void I18n::Load()
+    void I18n::Load(std::string_view a_override)
     {
-        std::string suffix = DetectLanguageSuffix();
-        SKSE::log::info("MuteNPC: Detected language suffix: {}", suffix);
+        std::string suffix;
+        if (!a_override.empty() && a_override != "auto") {
+            suffix = a_override;
+            std::transform(suffix.begin(), suffix.end(), suffix.begin(), [](unsigned char c) {
+                return static_cast<char>(std::toupper(c));
+            });
+        } else {
+            suffix = DetectLanguageSuffix();
+        }
+
+        m_currentSuffix = suffix;
+        SKSE::log::info("MuteNPC: Using language: {}", suffix);
 
         if (suffix == "RU") {
             SetRussianDefaults();
+        } else {
+            SetEnglishDefaults();
         }
 
         auto pluginsDir = std::filesystem::current_path() / "Data" / "SKSE" / "Plugins";
@@ -159,7 +193,6 @@ namespace MuteNPC
             return;
         }
 
-        // Fallback to default Strings.json or EN.json
         auto defaultFile = pluginsDir / "MuteNPCStrings.json";
         if (std::filesystem::exists(defaultFile)) {
             LoadFromFile(defaultFile);
@@ -172,6 +205,6 @@ namespace MuteNPC
             return;
         }
 
-        SKSE::log::info("MuteNPC: No external strings file found, using built-in defaults ({})", suffix == "RU" ? "Russian" : "English");
+        SKSE::log::info("MuteNPC: Using built-in defaults ({})", suffix == "RU" ? "Russian" : "English");
     }
 }

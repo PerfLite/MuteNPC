@@ -17,6 +17,8 @@ namespace SKSEMenuFramework
     using igText_t = void (*)(const char*, ...);
     using igCheckbox_t = bool (*)(const char*, bool*);
     using igSliderFloat_t = bool (*)(const char*, float*, float, float, const char*, int);
+    using igSliderInt_t = bool (*)(const char*, int*, int, int, const char*, int);
+    using igCombo_Str_t = bool (*)(const char*, int*, const char*, int);
     using igButton_t = bool (*)(const char*, ImVec2);
     using igSeparator_t = void (*)();
     using igSameLine_t = void (*)(float, float);
@@ -36,6 +38,8 @@ namespace SKSEMenuFramework
     inline igText_t igText = nullptr;
     inline igCheckbox_t igCheckbox = nullptr;
     inline igSliderFloat_t igSliderFloat = nullptr;
+    inline igSliderInt_t igSliderInt = nullptr;
+    inline igCombo_Str_t igCombo_Str = nullptr;
     inline igButton_t igButton = nullptr;
     inline igSeparator_t igSeparator = nullptr;
     inline igSameLine_t igSameLine = nullptr;
@@ -65,6 +69,8 @@ namespace SKSEMenuFramework
         igText = reinterpret_cast<igText_t>(GetProcAddress(hMod, "igText"));
         igCheckbox = reinterpret_cast<igCheckbox_t>(GetProcAddress(hMod, "igCheckbox"));
         igSliderFloat = reinterpret_cast<igSliderFloat_t>(GetProcAddress(hMod, "igSliderFloat"));
+        igSliderInt = reinterpret_cast<igSliderInt_t>(GetProcAddress(hMod, "igSliderInt"));
+        igCombo_Str = reinterpret_cast<igCombo_Str_t>(GetProcAddress(hMod, "igCombo_Str"));
         igButton = reinterpret_cast<igButton_t>(GetProcAddress(hMod, "igButton"));
         igSeparator = reinterpret_cast<igSeparator_t>(GetProcAddress(hMod, "igSeparator"));
         igSameLine = reinterpret_cast<igSameLine_t>(GetProcAddress(hMod, "igSameLine"));

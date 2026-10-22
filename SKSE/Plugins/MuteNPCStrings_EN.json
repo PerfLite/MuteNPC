@@ -9,6 +9,7 @@
   "Target.BtnUnmute": "Unmute this target",
   "Params.Section": "Parameters:",
   "Params.HideSubtitles": "Hide subtitles for muted dialogue",
+  "Params.Language": "Language:",
   "List.Header": "Muted NPC List (%zu)",
   "List.Empty": "List is empty. Aim at an NPC and click \"Mute this target\".",
   "List.BtnDelete": "Remove",
