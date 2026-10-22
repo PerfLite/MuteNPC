@@ -20,6 +20,9 @@ Debug/
 *.rar
 *.log
 
+# Local scripts & configs
+deploy.ps1
+
 # OS & Editor
 .DS_Store
 Thumbs.db
