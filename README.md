@@ -32,7 +32,7 @@ Tired of Heimskr shouting all day in Whiterun? Annoyed by Nazeem's condescending
    * `[x] Скрывать субтитры заглушенных фраз (Hide subtitles)` — completely removes floating subtitles for muted NPC lines so your screen stays clean.
 
 4. **Clean In-Game UI:**
-   * Seamless integration with [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/106534).
+   * Seamless integration with [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352).
    * Muted NPC list with convenient `[Удалить]` (Remove) buttons placed on the left for easy access.
    * One-click clear list and reset options.
    * No technical IDs, clutter, or hardcoded actors.
@@ -41,7 +41,7 @@ Tired of Heimskr shouting all day in Whiterun? Annoyed by Nazeem's condescending
 
 * **Skyrim Special Edition** (1.5.97) / **Anniversary Edition** (1.6.x) / **Skyrim VR**
 * [SKSE64](https://skse.silverlock.org/)
-* [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/106534)
+* [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352)
 * [Address Library for SKSE Plugins](https://www.nexusmods.com/skyrimspecialedition/mods/32444)
 
 ### 📦 Installation
@@ -94,7 +94,7 @@ Output binary: `build/windows/x64/release/MuteNPC.dll`.
    * `[x] Скрывать субтитры заглушенных фраз` — убирает всплывающий текст фраз заглушённых персонажей, чтобы не засорять экран.
 
 4. **Удобное меню в игре:**
-   * Интеграция с [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/106534).
+   * Интеграция с [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352).
    * Список заглушённых персонажей с кнопками удаления `[Удалить]` слева от имени.
    * Кнопка быстрой очистки всего списка и сброса настроек.
    * Никакого мусора, лишних технических ID и загромождения интерфейса.
@@ -103,7 +103,7 @@ Output binary: `build/windows/x64/release/MuteNPC.dll`.
 
 * **Skyrim Special Edition** (1.5.97) / **Anniversary Edition** (1.6.x) / **Skyrim VR**
 * [SKSE64](https://skse.silverlock.org/)
-* [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/106534)
+* [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352)
 * [Address Library for SKSE Plugins](https://www.nexusmods.com/skyrimspecialedition/mods/32444)
 
 ### 📦 Установка
