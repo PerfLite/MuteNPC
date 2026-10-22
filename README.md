@@ -1,149 +1,122 @@
-# MuteNPC (SKSE64 Plugin)
+<div align="center">
 
-<p align="center">
-  <a href="#english"><b>English</b></a> | <a href="#русский"><b>Русский</b></a>
+<img src="assets/banner.svg" alt="MuteNPC" width="100%">
+
+<p>
+  <a href="#english">🇬🇧 English</a> ·
+  <a href="#русский">🇷🇺 Русский</a>
 </p>
 
+<p>
+  <img src="https://img.shields.io/github/v/release/PerfLite/MuteNPC?style=flat-square" alt="release">
+  <img src="https://img.shields.io/github/license/PerfLite/MuteNPC?style=flat-square" alt="license">
+  <img src="https://img.shields.io/github/languages/top/PerfLite/MuteNPC?style=flat-square" alt="language">
+  <img src="https://img.shields.io/github/stars/PerfLite/MuteNPC?style=flat-square" alt="stars">
+  <img src="https://img.shields.io/github/downloads/PerfLite/MuteNPC/total?style=flat-square" alt="downloads">
+</p>
+
+<p>
+  <a href="https://github.com/PerfLite/MuteNPC/releases/latest"><b>⬇️ Download / Скачать</b></a> ·
+  <a href="https://github.com/PerfLite/MuteNPC/releases">📦 All releases / Все релизы</a>
+</p>
+
+</div>
+
+## ⬇️ Download / Скачать
+
+| File / Файл | Description / Описание | Link / Ссылка |
+|---|---|---|
+| `MuteNPC-v1.0.0.zip` | SKSE plugin for Skyrim SE / AE / VR · SKSE-плагин для Skyrim SE / AE / VR | [Download](https://github.com/PerfLite/MuteNPC/releases/latest/download/MuteNPC-v1.0.0.zip) |
+
+> Older versions and changelogs: [Releases](https://github.com/PerfLite/MuteNPC/releases) ·
+> Старые версии и список изменений: [Релизы](https://github.com/PerfLite/MuteNPC/releases)
+
 ---
 
-<a name="english"></a>
 ## English
 
-A native C++ SKSE64 plugin powered by [CommonLibSSE-ng](https://github.com/CharmedBaryon/CommonLibSSE-ng) for selectively and completely muting annoying NPCs in **Skyrim Special Edition / Anniversary Edition / VR**.
+A native C++ SKSE64 plugin powered by [CommonLibSSE-ng](https://github.com/CharmedBaryon/CommonLibSSE-ng) for selectively and completely muting annoying NPCs in Skyrim Special Edition, Anniversary Edition, and Skyrim VR.
 
-### 🎯 Overview
+### Features
 
-Tired of Heimskr shouting all day in Whiterun? Annoyed by Nazeem's condescending remarks? Or any other NPC constantly spamming voice lines?
-**MuteNPC** lets you silence any NPC with a single click. Muted characters remain completely silent everywhere: in the open world, during preaching scenes, in direct dialogue ('E' key), and when saying goodbye.
+- **Crosshair Target Action**: Aim at any NPC in the world and mute them with a single click in the in-game menu.
+- **Complete Silence**: Clears voice audio descriptors across ambient comments, preaching scenes, direct dialogue ('E' key), and goodbyes.
+- **Subtitle Suppression**: Toggle to hide floating subtitles for muted dialogue so your screen stays clean.
+- **In-Game Settings**: Clean UI integrated with [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352) with convenient *[Remove]* buttons on the left.
+- **Multi-Language Support**: Automatic game language detection with a live in-game language selector (*Auto* / *English* / *Русский*) and easy translation via `MuteNPCStrings_<LANG>.json`.
+- **Zero Hardcoding**: Fully dynamic JSON config with no hardcoded actor records.
 
-### ✨ Features
+### Install
 
-1. **One-Click Target Muting:**
-   * Aim your crosshair at any NPC.
-   * Open **SKSE Menu Framework** ➔ **MuteNPC / Settings**.
-   * Click **"Mute this target"** — the NPC immediately goes silent, even mid-sentence.
-   * Click **"Unmute this target"** if you ever want their voice back.
+#### Requirements
 
-2. **Complete Silence:**
-   * Voice audio descriptors are cleared (`voiceSound = nullptr`, `voice = ""`).
-   * Silences all lines: ambient chatter, scene preachings, greetings, direct dialogue menu choices, and goodbyes.
+- [Skyrim Special Edition](https://store.steampowered.com/app/489830/) (1.5.97) / [Anniversary Edition](https://store.steampowered.com/app/489830/) (1.6.x) / Skyrim VR
+- [SKSE64](https://skse.silverlock.org/)
+- [Address Library for SKSE Plugins](https://www.nexusmods.com/skyrimspecialedition/mods/32444)
+- [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352)
 
-3. **Subtitle Suppression:**
-   * `[x] Hide subtitles for muted dialogue` — completely removes floating subtitles for muted NPC lines so your screen stays clean.
+#### Steps
 
-4. **Clean In-Game UI:**
-   * Seamless integration with [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352).
-   * Muted NPC list with convenient `[Remove]` buttons placed on the left for easy access.
-   * One-click clear list and reset options.
-   * No technical IDs, clutter, or hardcoded actors.
+Install `MuteNPC-v1.0.0.zip` using your mod manager (**Mod Organizer 2** or **Vortex**), or clone/extract to your Data directory:
 
-5. **Multi-Language Support (JSON Localization):**
-   * Automatically detects game language (e.g. English, Russian) from your game settings.
-   * Translations are loaded via simple JSON files in `SKSE/Plugins/`:
-     * `MuteNPCStrings_EN.json` (English)
-     * `MuteNPCStrings_RU.json` (Russian)
-   * Anyone can easily add their own language: just create `MuteNPCStrings_<LANG>.json` (e.g., `MuteNPCStrings_DE.json`, `MuteNPCStrings_FR.json`, `MuteNPCStrings_ES.json`).
-
-### 🔧 Requirements
-
-* **Skyrim Special Edition** (1.5.97) / **Anniversary Edition** (1.6.x) / **Skyrim VR**
-* [SKSE64](https://skse.silverlock.org/)
-* [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352)
-* [Address Library for SKSE Plugins](https://www.nexusmods.com/skyrimspecialedition/mods/32444)
-
-### 📦 Installation
-
-Install with your favorite mod manager (**Mod Organizer 2** or **Vortex**).
-
-Package structure:
 ```
-SKSE/
-  Plugins/
-    MuteNPC.dll
-    MuteNPCStrings.json
-    MuteNPCStrings_EN.json
-    MuteNPCStrings_RU.json
+https://github.com/PerfLite/MuteNPC
 ```
 
-### 🛠️ Building from Source
-
-Built using [xmake](https://xmake.io/) and [CommonLibSSE-ng](https://github.com/CharmedBaryon/CommonLibSSE-ng):
+### Build
 
 ```bash
 xmake config -m release
 xmake
 ```
 
-Output binary: `build/windows/x64/release/MuteNPC.dll`.
+### License
+
+MIT — see [LICENSE](LICENSE).
+
+<p align="right"><a href="#english">↑ Back to top</a> · <a href="#русский">Русский ↓</a></p>
 
 ---
 
-<a name="русский"></a>
 ## Русский
 
-Нативный SKSE64-плагин на C++ (на базе [CommonLibSSE-ng](https://github.com/CharmedBaryon/CommonLibSSE-ng)) для выборочного и полного заглушения надоедливых NPC в **Skyrim Special Edition / Anniversary Edition / VR**.
+Нативный SKSE64-плагин на C++ (на базе [CommonLibSSE-ng](https://github.com/CharmedBaryon/CommonLibSSE-ng)) для выборочного и полного заглушения надоедливых NPC в Skyrim Special Edition, Anniversary Edition и Skyrim VR.
 
-### 🎯 Описание
+### Возможности
 
-Надоел вечно кричащий Хеймскр в Вайтране? Раздражает надменный Назим? Или любой другой персонаж, спамящий фразами?
-**MuteNPC** позволяет заглушить любого NPC в игре одним нажатием кнопки. Заглушённый персонаж затихает полностью: и в открытом мире / сценах, и при личном диалоге через клавишу «E», и при прощании.
+- **Заглушение цели под прицелом**: Наведите прицел на любого NPC и заглушите его в один клик через игровое меню.
+- **Полная тишина**: Звуковые дорожки обнуляются везде — случайные выкрики, проповеди, личный диалог по «E» и прощания.
+- **Скрытие субтитров**: Опция отключения всплывающих субтитров для заглушённых фраз.
+- **Удобное меню в игре**: Аккуратный интерфейс через [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352) с удобными кнопками *[Удалить]* слева от имени.
+- **Мультиязычность**: Автоопределение языка с переключателем прямо в меню настроек (*Auto* / *English* / *Русский*) и простая поддержка переводов через `MuteNPCStrings_<ЯЗЫК>.json`.
+- **Без хардкода**: Динамический список персонажей и чистый JSON-конфиг.
 
-### ✨ Возможности
+### Установка
 
-1. **Мгновенное добавление в список заглушённых:**
-   * Наведите прицел на любого NPC в игре.
-   * Откройте меню **SKSE Menu Framework** ➔ **MuteNPC / Настройки**.
-   * Нажмите **«Заглушить эту цель»** — персонаж мгновенно замолкает (даже если говорил прямо в этот момент).
-   * Если захотите вернуть голос — нажмите **«Вернуть голос этой цели»**.
+#### Требования
 
-2. **Полная тишина:**
-   * Звуковая дорожка реплики заглушённого NPC полностью обнуляется (`voiceSound = nullptr`, `voice = ""`).
-   * Работает везде: спонтанные реплики, сцены проповедей, приветствия, ветки личного диалога и прощания.
+- [Skyrim Special Edition](https://store.steampowered.com/app/489830/) (1.5.97) / [Anniversary Edition](https://store.steampowered.com/app/489830/) (1.6.x) / Skyrim VR
+- [SKSE64](https://skse.silverlock.org/)
+- [Address Library for SKSE Plugins](https://www.nexusmods.com/skyrimspecialedition/mods/32444)
+- [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352)
 
-3. **Опция скрытия субтитров:**
-   * `[x] Скрывать субтитры заглушенных фраз` — убирает всплывающий текст фраз заглушённых персонажей, чтобы не засорять экран.
+#### Шаги
 
-4. **Удобное меню в игре:**
-   * Интеграция с [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352).
-   * Список заглушённых персонажей с кнопками удаления `[Удалить]` слева от имени.
-   * Кнопка быстрой очистки всего списка и сброса настроек.
-   * Никакого мусора, лишних технических ID и загромождения интерфейса.
+Установите архив `MuteNPC-v1.0.0.zip` с помощью любого мод-менеджера (**Mod Organizer 2** или **Vortex**):
 
-5. **Мультиязычность и перевод через JSON:**
-   * Мод автоматически определяет язык игры (русский или английский).
-   * Переводы хранятся в формате JSON в папке `SKSE/Plugins/`:
-     * `MuteNPCStrings_RU.json` (Русский)
-     * `MuteNPCStrings_EN.json` (Английский)
-   * Любой пользователь или локализатор может легко сделать свой перевод: достаточно создать файл `MuteNPCStrings_<ЯЗЫК>.json` (например, `MuteNPCStrings_DE.json`, `MuteNPCStrings_FR.json` и т.д.).
-
-### 🔧 Требования
-
-* **Skyrim Special Edition** (1.5.97) / **Anniversary Edition** (1.6.x) / **Skyrim VR**
-* [SKSE64](https://skse.silverlock.org/)
-* [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352)
-* [Address Library for SKSE Plugins](https://www.nexusmods.com/skyrimspecialedition/mods/32444)
-
-### 📦 Установка
-
-Установите архив с помощью любого мод-менеджера (**Mod Organizer 2** или **Vortex**).
-
-Структура файлов:
 ```
-SKSE/
-  Plugins/
-    MuteNPC.dll
-    MuteNPCStrings.json
-    MuteNPCStrings_EN.json
-    MuteNPCStrings_RU.json
+https://github.com/PerfLite/MuteNPC
 ```
 
-### 🛠️ Сборка из исходников
-
-Проект собирается с помощью [xmake](https://xmake.io/) и [CommonLibSSE-ng](https://github.com/CharmedBaryon/CommonLibSSE-ng):
+### Сборка
 
 ```bash
 xmake config -m release
 xmake
 ```
 
-Собранная библиотека появится в `build/windows/x64/release/MuteNPC.dll`.
+### Лицензия
+
+MIT — см. [LICENSE](LICENSE).
+
+<p align="right"><a href="#русский">↑ Наверх</a> · <a href="#english">English ↑</a></p>
