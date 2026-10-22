@@ -1,0 +1,17 @@
+{
+  "Menu.Section": "MuteNPC/Настройки",
+  "Menu.Header": "=== MuteNPC: Заглушение NPC ===",
+  "Menu.Enable": "Включить мод",
+  "Target.Section": "Цель под прицелом:",
+  "Target.Name": "  Цель: %s",
+  "Target.None": "  (наведите прицел на любого NPC)",
+  "Target.BtnMute": "Заглушить эту цель",
+  "Target.BtnUnmute": "Вернуть голос этой цели",
+  "Params.Section": "Параметры:",
+  "Params.HideSubtitles": "Скрывать субтитры заглушенных фраз",
+  "List.Header": "Список заглушенных NPC (%zu)",
+  "List.Empty": "Список пуст. Наведите прицел на NPC и нажмите «Заглушить эту цель».",
+  "List.BtnDelete": "Удалить",
+  "List.BtnClear": "Очистить весь список",
+  "Settings.BtnReset": "Сбросить настройки к стандартным"
+}

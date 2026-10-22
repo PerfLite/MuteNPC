@@ -1,0 +1,17 @@
+{
+  "Menu.Section": "MuteNPC/Settings",
+  "Menu.Header": "=== MuteNPC: Silence NPCs ===",
+  "Menu.Enable": "Enable mod",
+  "Target.Section": "Crosshair Target:",
+  "Target.Name": "  Target: %s",
+  "Target.None": "  (aim at any NPC)",
+  "Target.BtnMute": "Mute this target",
+  "Target.BtnUnmute": "Unmute this target",
+  "Params.Section": "Parameters:",
+  "Params.HideSubtitles": "Hide subtitles for muted dialogue",
+  "List.Header": "Muted NPC List (%zu)",
+  "List.Empty": "List is empty. Aim at an NPC and click \"Mute this target\".",
+  "List.BtnDelete": "Remove",
+  "List.BtnClear": "Clear entire list",
+  "Settings.BtnReset": "Reset settings to default"
+}

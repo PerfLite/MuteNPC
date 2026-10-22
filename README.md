@@ -21,21 +21,28 @@ Tired of Heimskr shouting all day in Whiterun? Annoyed by Nazeem's condescending
 1. **One-Click Target Muting:**
    * Aim your crosshair at any NPC.
    * Open **SKSE Menu Framework** ➔ **MuteNPC / Settings**.
-   * Click **"Заглушить эту цель" (Mute target)** — the NPC immediately goes silent, even mid-sentence.
-   * Click **"Вернуть голос этой цели" (Unmute target)** if you ever want their voice back.
+   * Click **"Mute this target"** — the NPC immediately goes silent, even mid-sentence.
+   * Click **"Unmute this target"** if you ever want their voice back.
 
 2. **Complete Silence:**
    * Voice audio descriptors are cleared (`voiceSound = nullptr`, `voice = ""`).
    * Silences all lines: ambient chatter, scene preachings, greetings, direct dialogue menu choices, and goodbyes.
 
 3. **Subtitle Suppression:**
-   * `[x] Скрывать субтитры заглушенных фраз (Hide subtitles)` — completely removes floating subtitles for muted NPC lines so your screen stays clean.
+   * `[x] Hide subtitles for muted dialogue` — completely removes floating subtitles for muted NPC lines so your screen stays clean.
 
 4. **Clean In-Game UI:**
    * Seamless integration with [SKSE Menu Framework](https://www.nexusmods.com/skyrimspecialedition/mods/120352).
-   * Muted NPC list with convenient `[Удалить]` (Remove) buttons placed on the left for easy access.
+   * Muted NPC list with convenient `[Remove]` buttons placed on the left for easy access.
    * One-click clear list and reset options.
    * No technical IDs, clutter, or hardcoded actors.
+
+5. **Multi-Language Support (JSON Localization):**
+   * Automatically detects game language (e.g. English, Russian) from your game settings.
+   * Translations are loaded via simple JSON files in `SKSE/Plugins/`:
+     * `MuteNPCStrings_EN.json` (English)
+     * `MuteNPCStrings_RU.json` (Russian)
+   * Anyone can easily add their own language: just create `MuteNPCStrings_<LANG>.json` (e.g., `MuteNPCStrings_DE.json`, `MuteNPCStrings_FR.json`, `MuteNPCStrings_ES.json`).
 
 ### 🔧 Requirements
 
@@ -53,6 +60,9 @@ Package structure:
 SKSE/
   Plugins/
     MuteNPC.dll
+    MuteNPCStrings.json
+    MuteNPCStrings_EN.json
+    MuteNPCStrings_RU.json
 ```
 
 ### 🛠️ Building from Source
@@ -99,6 +109,13 @@ Output binary: `build/windows/x64/release/MuteNPC.dll`.
    * Кнопка быстрой очистки всего списка и сброса настроек.
    * Никакого мусора, лишних технических ID и загромождения интерфейса.
 
+5. **Мультиязычность и перевод через JSON:**
+   * Мод автоматически определяет язык игры (русский или английский).
+   * Переводы хранятся в формате JSON в папке `SKSE/Plugins/`:
+     * `MuteNPCStrings_RU.json` (Русский)
+     * `MuteNPCStrings_EN.json` (Английский)
+   * Любой пользователь или локализатор может легко сделать свой перевод: достаточно создать файл `MuteNPCStrings_<ЯЗЫК>.json` (например, `MuteNPCStrings_DE.json`, `MuteNPCStrings_FR.json` и т.д.).
+
 ### 🔧 Требования
 
 * **Skyrim Special Edition** (1.5.97) / **Anniversary Edition** (1.6.x) / **Skyrim VR**
@@ -115,6 +132,9 @@ Output binary: `build/windows/x64/release/MuteNPC.dll`.
 SKSE/
   Plugins/
     MuteNPC.dll
+    MuteNPCStrings.json
+    MuteNPCStrings_EN.json
+    MuteNPCStrings_RU.json
 ```
 
 ### 🛠️ Сборка из исходников

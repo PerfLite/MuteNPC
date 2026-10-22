@@ -3,6 +3,7 @@
 #include "SKSEMenuFramework_API.h"
 #include "Config.h"
 #include "DialogueHook.h"
+#include "I18n.h"
 #include <cstdio>
 
 namespace MuteNPC
@@ -24,20 +25,21 @@ namespace MuteNPC
     {
         auto& cfgMgr = Config::GetSingleton();
         auto& cfg = cfgMgr.GetSettings();
+        const auto& tr = Tr();
         bool changed = false;
 
-        SKSEMenuFramework::igText("=== MuteNPC: Заглушение NPC ===");
+        SKSEMenuFramework::igText(tr.menu_header.c_str());
         SKSEMenuFramework::igSeparator();
 
         // 1. Главный переключатель
-        if (SKSEMenuFramework::igCheckbox("Включить мод", &cfg.enabled)) {
+        if (SKSEMenuFramework::igCheckbox(tr.menu_enable.c_str(), &cfg.enabled)) {
             changed = true;
         }
 
         SKSEMenuFramework::igSeparator();
 
         // 2. Цель под прицелом
-        SKSEMenuFramework::igText("Цель под прицелом:");
+        SKSEMenuFramework::igText(tr.target_section.c_str());
         auto* target = GetCrosshairActor();
         if (target) {
             auto* base = target->GetActorBase();
@@ -45,31 +47,31 @@ namespace MuteNPC
             std::string displayName = (name && name[0]) ? name : "NPC";
 
             char buf[128];
-            std::snprintf(buf, sizeof(buf), "  Цель: %s", displayName.c_str());
+            std::snprintf(buf, sizeof(buf), tr.target_name.c_str(), displayName.c_str());
             SKSEMenuFramework::igText("%s", buf);
 
             bool isMuted = cfgMgr.IsMuted(target);
             if (isMuted) {
-                if (SKSEMenuFramework::igButton("Вернуть голос этой цели", { 0, 0 })) {
+                if (SKSEMenuFramework::igButton(tr.target_btn_unmute.c_str(), { 0, 0 })) {
                     cfgMgr.UnmuteActor(target);
                     changed = true;
                 }
             } else {
-                if (SKSEMenuFramework::igButton("Заглушить эту цель", { 0, 0 })) {
+                if (SKSEMenuFramework::igButton(tr.target_btn_mute.c_str(), { 0, 0 })) {
                     cfgMgr.MuteActor(target);
                     StopSpeech(target);
                     changed = true;
                 }
             }
         } else {
-            SKSEMenuFramework::igText("  (наведите прицел на любого NPC)");
+            SKSEMenuFramework::igText(tr.target_none.c_str());
         }
 
         SKSEMenuFramework::igSeparator();
 
         // 3. Параметры
-        SKSEMenuFramework::igText("Параметры:");
-        if (SKSEMenuFramework::igCheckbox("Скрывать субтитры заглушенных фраз", &cfg.blockSubtitles)) {
+        SKSEMenuFramework::igText(tr.params_section.c_str());
+        if (SKSEMenuFramework::igCheckbox(tr.params_hide_subtitles.c_str(), &cfg.blockSubtitles)) {
             changed = true;
         }
 
@@ -77,17 +79,17 @@ namespace MuteNPC
 
         // 4. Список заглушенных NPC
         char listHeader[128];
-        std::snprintf(listHeader, sizeof(listHeader), "Список заглушенных NPC (%zu)", cfg.mutedList.size());
+        std::snprintf(listHeader, sizeof(listHeader), tr.list_header.c_str(), cfg.mutedList.size());
         if (SKSEMenuFramework::igCollapsingHeader && SKSEMenuFramework::igCollapsingHeader(listHeader, 0)) {
             if (cfg.mutedList.empty()) {
-                SKSEMenuFramework::igText("Список пуст. Наведите прицел на NPC и нажмите «Заглушить эту цель».");
+                SKSEMenuFramework::igText(tr.list_empty.c_str());
             } else {
                 size_t toRemove = static_cast<size_t>(-1);
                 for (size_t i = 0; i < cfg.mutedList.size(); ++i) {
                     const auto& item = cfg.mutedList[i];
 
                     char btnDel[64];
-                    std::snprintf(btnDel, sizeof(btnDel), "Удалить##%zu", i);
+                    std::snprintf(btnDel, sizeof(btnDel), "%s##%zu", tr.list_btn_delete.c_str(), i);
                     if (SKSEMenuFramework::igButton(btnDel, { 0, 0 })) {
                         toRemove = i;
                     }
@@ -105,7 +107,7 @@ namespace MuteNPC
                 }
 
                 SKSEMenuFramework::igSeparator();
-                if (SKSEMenuFramework::igButton("Очистить весь список", { 0, 0 })) {
+                if (SKSEMenuFramework::igButton(tr.list_btn_clear.c_str(), { 0, 0 })) {
                     cfg.mutedList.clear();
                     changed = true;
                 }
@@ -115,7 +117,7 @@ namespace MuteNPC
         SKSEMenuFramework::igSeparator();
 
         // 5. Сброс настроек
-        if (SKSEMenuFramework::igButton("Сбросить настройки к стандартным", { 0, 0 })) {
+        if (SKSEMenuFramework::igButton(tr.settings_btn_reset.c_str(), { 0, 0 })) {
             cfg.enabled = true;
             cfg.muteVoiceAudio = true;
             cfg.blockLipSync = false;
@@ -135,8 +137,8 @@ namespace MuteNPC
         SKSE::log::info("MuteNPC: SKSEMenuFramework::Init() = {}", smfOk ? "SUCCESS" : "NOT FOUND");
 
         if (smfOk && SKSEMenuFramework::AddSectionItem) {
-            SKSEMenuFramework::AddSectionItem("MuteNPC/Настройки", RenderUI);
-            SKSE::log::info("MuteNPC: Registered section in SKSE Menu Framework");
+            SKSEMenuFramework::AddSectionItem(Tr().menu_section.c_str(), RenderUI);
+            SKSE::log::info("MuteNPC: Registered section in SKSE Menu Framework: {}", Tr().menu_section);
         }
     }
 }

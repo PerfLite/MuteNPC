@@ -2,6 +2,7 @@
 #include "Config.h"
 #include "DialogueHook.h"
 #include "SettingsMenu.h"
+#include "I18n.h"
 #include <spdlog/sinks/basic_file_sink.h>
 
 namespace
@@ -34,6 +35,9 @@ namespace
                 SKSE::log::info("MuteNPC: kDataLoaded received, initializing...");
 
                 try {
+                    // Load translations
+                    MuteNPC::I18n::GetSingleton().Load();
+
                     // Install hooks
                     MuteNPC::InstallHooks();
 
